@@ -42,13 +42,13 @@ class GameClass:
                 cur.execute(
                     f"SELECT cities from '_cities' WHERE cities LIKE '{self.usersValue[-i].upper()}%' AND isUsed = 'false';")
                 self.answer = cur.fetchone()
-                cur.execute(f"UPDATE _cities SET isUsed = 'true' WHERE cities LIKE '{self.answer[0]}%';")
                 while self.answer == None:
                     cur.execute(
                         f"SELECT cities from '_cities' WHERE cities LIKE '{self.usersValue[-i].upper()}%' AND isUsed = 'false';")
                     self.answer = cur.fetchone()
                     cur.execute(f"UPDATE _cities SET isUsed = 'true' WHERE cities LIKE '{self.answer[0]}%';")
-
+                
+                cur.execute(f"UPDATE _cities SET isUsed = 'true' WHERE cities LIKE '{self.answer[0]}%';")
                 return self.answer[0]
         else:
             return "Used"
